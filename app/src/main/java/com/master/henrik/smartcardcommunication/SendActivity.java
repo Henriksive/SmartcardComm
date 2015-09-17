@@ -17,6 +17,7 @@ public class SendActivity extends AppCompatActivity {
     Button nfcTransmitButton;
     Button msdTransmitButton;
     EditText inputField;
+    EditText selInputField;
     TextView outputField;
     boolean isInNFCMode;
     boolean isInSDMode;
@@ -57,6 +58,7 @@ public class SendActivity extends AppCompatActivity {
 
     public void setup(){
         inputField = (EditText)findViewById(R.id.edtInput);
+        selInputField = (EditText)findViewById(R.id.edtSelInput);
         outputField = (TextView)findViewById(R.id.txtOutput);
         nfcTransmitButton = (Button)findViewById(R.id.btnTransmitnfc);
         msdTransmitButton = (Button)findViewById(R.id.btnTransmitsd);
@@ -81,20 +83,22 @@ public class SendActivity extends AppCompatActivity {
 
     private void initMsdCardCommunication(){
         String input = inputField.getText().toString();
+        String selInput = selInputField.getText().toString();
         if(!isInSDMode) {
             MsdReaderFragment msdReaderFragment = new MsdReaderFragment();
             msdReaderFragment.enableSDcommunication(getApplicationContext(), this);
             msdReaderFragment.currentActivity = this;
             msdReaderFragment.transmitString = input;
+            msdReaderFragment.SD_CARD_AID = selInput;
             outputField.setText("Waiting for output from mSD...");
             isInSDMode = true;
-            inputField.setEnabled(false);
+            setInputStatus(false);
             nfcTransmitButton.setEnabled(false);
             msdTransmitButton.setText("Stop transmit to mSD card");
         }
         else{
             isInSDMode = false;
-            inputField.setEnabled(true);
+            setInputStatus(true);
             nfcTransmitButton.setEnabled(true);
             msdTransmitButton.setText("Transmit to mSD card");
             outputField.setText("");
@@ -104,18 +108,20 @@ public class SendActivity extends AppCompatActivity {
 
     private void initCardCommunication(){
         String input = inputField.getText().toString();
+        String selInput = selInputField.getText().toString();
         //setup NFC reader
         if(cardReaderFragment == null) {
             cardReaderFragment = new CardReaderFragment();
             cardReaderFragment.currentActivity = this;
-            cardReaderFragment.transmitString = input;
         }
         if(!isInNFCMode) {
+            cardReaderFragment.transmitString = input;
+            cardReaderFragment.selString = selInput;
             //Start reading NFC
             nfcTransmitButton.setText("Disable NFC");
             isInNFCMode = true;
             cardReaderFragment.enableReaderMode();
-            inputField.setEnabled(false);
+            setInputStatus(false);
             msdTransmitButton.setEnabled(false);
             outputField.setText("Waiting for output from NFC...");
         }
@@ -123,10 +129,15 @@ public class SendActivity extends AppCompatActivity {
             //Stop reading NFC
             cardReaderFragment.disableReaderMode();
             isInNFCMode = false;
-            inputField.setEnabled(true);
+            setInputStatus(true);
             msdTransmitButton.setEnabled(true);
             nfcTransmitButton.setText("Transmit to NFC Card");
             outputField.setText("");
         }
+    }
+
+    private void setInputStatus(boolean status){
+        inputField.setEnabled(status);
+        selInputField.setEnabled(status);
     }
 }

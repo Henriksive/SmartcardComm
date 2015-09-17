@@ -18,7 +18,7 @@ public class MsdReaderFragment implements  SEService.CallBack{
     private final static String TAG = "MsdReaderFragment";
     private SEService seService;
     // AID for card service.
-    private static final String SD_CARD_AID = "0102030405060708090007";
+    public static String SD_CARD_AID;
     public static Activity currentActivity;
     public static String transmitString;
 

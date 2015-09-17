@@ -20,7 +20,9 @@ public class CardReaderFragment extends Fragment implements  NFCCardReader.CardC
     private NFCCardReader nfcReader;
     public static int READER_FLAGS = NfcAdapter.FLAG_READER_NFC_A | NfcAdapter.FLAG_READER_SKIP_NDEF_CHECK;
     public static Activity currentActivity;
+    public static String selString;
     public static String transmitString;
+
 
     public CardReaderFragment(){
         nfcReader = new NFCCardReader(this);
@@ -34,6 +36,7 @@ public class CardReaderFragment extends Fragment implements  NFCCardReader.CardC
         NfcAdapter nfc = NfcAdapter.getDefaultAdapter(currentActivity);
         if (nfc != null) {
             nfcReader.transmitString = transmitString;
+            nfcReader.SD_CARD_AID = selString;
             nfc.enableReaderMode(currentActivity, nfcReader, READER_FLAGS, null);
         }
     }

@@ -8,26 +8,48 @@
     android:focusableInTouchMode="true"
     tools:context="com.master.henrik.smartcardcommunication.SendActivity">
 
-
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="AID:"
+        android:id="@+id/lblSel" />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/edtSelInput"
+        android:layout_below="@+id/lblSel"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:text="0102030405060708090007"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/edtSelInput"
+        android:layout_marginTop="10px"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Command:"
+        android:id="@+id/lblInp" />
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/edtInput"
-        android:layout_alignParentTop="true"
+        android:layout_below="@+id/lblInp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:text="0807000000"
         />
     <Button
         android:layout_width="match_parent"
-        android:layout_height="200px"
+        android:layout_height="120px"
         android:text="Transmit to NFC card"
         android:id="@+id/btnTransmitnfc"
         android:layout_below="@+id/btnTransmitsd"
         android:layout_centerHorizontal="true" />
     <Button
         android:layout_width="match_parent"
-        android:layout_height="200px"
+        android:layout_height="120px"
         android:text="Transmit to mSD Card"
         android:id="@+id/btnTransmitsd"
         android:layout_below="@+id/edtInput"
@@ -39,7 +61,7 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:layout_below="@+id/btnTransmitnfc"
         android:text="Output:"
-        android:layout_marginTop="60px"
+        android:layout_marginTop="10px"
         android:id="@+id/lblOutput" />
     <ScrollView
         android:id="@+id/SCROLLER_ID"
@@ -47,7 +69,7 @@
         android:layout_height="wrap_content"
         android:scrollbars="vertical"
         android:layout_below="@+id/lblOutput"
-        android:layout_marginTop="20px"
+        android:layout_marginTop="10px"
         android:fillViewport="true">
 
         <TextView

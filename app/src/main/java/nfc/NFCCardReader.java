@@ -19,14 +19,15 @@ import shared.Converter;
 @TargetApi(Build.VERSION_CODES.KITKAT)
 public class NFCCardReader implements NfcAdapter.ReaderCallback {
     private static final String TAG = "NFCCardReader";
-    // AID for card service.
-    private static final String NFC_CARD_AID = "0102030405060708090007";
+
 
 
     // "OK" status word sent in response to SELECT AID command (0x9000)
     private static final byte[] SELECT_OK_SW = {(byte) 0x90, (byte) 0x00};
     private WeakReference<CardCallback> cCardCallBack;
     public String transmitString = "8000000000";
+    // AID for card service.
+    public String SD_CARD_AID;
 
     public NFCCardReader(CardCallback cardCallback){
         cCardCallBack = new WeakReference<CardCallback>(cardCallback);
@@ -41,7 +42,7 @@ public class NFCCardReader implements NfcAdapter.ReaderCallback {
             try {
                 isoDep.connect();
 
-                byte[] command = Converter.BuildSelectApdu(NFC_CARD_AID);
+                byte[] command = Converter.BuildSelectApdu(SD_CARD_AID);
                 Log.i(TAG, "Sending: " + Converter.ByteArrayToHexString(command));
                 byte[] result = isoDep.transceive(command);
 
