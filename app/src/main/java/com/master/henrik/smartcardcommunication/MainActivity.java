@@ -11,6 +11,7 @@ import android.widget.Button;
 public class MainActivity extends AppCompatActivity {
 
     Button sendButton;
+    Button gemaltoButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +49,15 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent sendIntent = new Intent(getApplicationContext(), SendActivity.class);
+                startActivity(sendIntent);
+            }
+        });
+
+        gemaltoButton = (Button)findViewById(R.id.btnGemalto);
+        gemaltoButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                Intent sendIntent = new Intent(getApplicationContext(), GemaltoSDActivity.class);
                 startActivity(sendIntent);
             }
         });

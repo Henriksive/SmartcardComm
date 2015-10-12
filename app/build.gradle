@@ -1,9 +1,16 @@
 apply plugin: 'com.android.application'
 
 android {
+    signingConfigs {
+        config {
+            keyAlias '{464c9c29-3616-4a5a-abac-638271faa403}'
+            keyPassword 'abc123'
+            storeFile file('C:/Program Files/Java/jdk1.8.0_60/bin/myKeyStore.jks')
+            storePassword 'abc123'
+        }
+    }
     compileSdkVersion 23
     buildToolsVersion "23.0.0"
-
     defaultConfig {
         applicationId "com.master.henrik.smartcardcommunication"
         minSdkVersion 16
@@ -17,10 +24,24 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    signingConfigs {
+        release {
+            storeFile file("C:\\Program Files\\Java\\jdk1.8.0_60\\bin\\myKeyStore.jks")
+            storePassword "abc123"
+            keyAlias "{464c9c29-3616-4a5a-abac-638271faa403}"
+            keyPassword "abc123"
+        }
+        debug {
+            storeFile file("C:\\Program Files\\Java\\jdk1.8.0_60\\bin\\myKeyStore.jks")
+            storePassword "abc123"
+            keyAlias "{464c9c29-3616-4a5a-abac-638271faa403}"
+            keyPassword "abc123"
+        }
+    }
 }
 
 dependencies {
-    //compile fileTree(include: ['*.jar'], dir: 'libs')
+    compile fileTree(include: ['*.jar'], dir: 'libs')
     compile 'com.android.support:appcompat-v7:23.0.0'
     //compile files('C:/Users/Henri/AndroidStudioProjects/SmartCardCommunication/libs/org.simalliance.openmobileapi.jar')
     //compile files('libs/org.simalliance.openmobileapi.jar')
