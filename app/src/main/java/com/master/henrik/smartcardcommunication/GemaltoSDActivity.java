@@ -53,9 +53,7 @@ public class GemaltoSDActivity extends AppCompatActivity {
 
     private static IAPDU m_apduService = null;
     private static int m_apduSessionId = 0;
-    private static byte[] testAppSignature = {(byte) 0xDA, (byte) 0x57, (byte) 0xAB, (byte) 0x74, (byte) 0x5D, (byte) 0xB2, (byte) 0xD2, (byte) 0x62,
-            (byte) 0x05, (byte) 0x3E, (byte) 0x8B, (byte) 0xB1, (byte) 0xC0, (byte) 0x5F, (byte) 0x71, (byte) 0x65
-    };
+    private static byte[] testAppSignature = {};
     private static String testAppPackage = "SmartCardCommunication";
 
     private static ServiceConnection m_apduConnection = new ServiceConnection() {
